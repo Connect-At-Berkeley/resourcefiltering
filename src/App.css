@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;584;700&display=swap');
+
+.App {
+  min-height: 100vh;
+  
+}
+.ResourceFinder{
+  font-family: 'Quicksand', sans-serif;
+}
+.resourcedisplay{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background: #056BA5;
+  color: white;
+  padding-top: 20px;
+  
+}
+.background{
+  background: #056BA5;
+  color: white;
+  padding: 20px;
+}
+.dropdown{
+  padding: 300px;
+  width: 300px;
+  float: left;
+  padding: 20px;
+  line-height: 20px;
+  background: white;
+}
+/* inspired by sproul.club */
