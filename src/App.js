@@ -16,8 +16,8 @@ const choices = [
   {value: 'cherry', label: "Cherry"}
 ]
 const App = () => {
-    const APP_ID = 'your id';
-    const APP_KEY = 'your key';
+    const APP_ID = '53ce6f41';
+    const APP_KEY = '5ffbad31fe45083fbe0f866dd398d4db';
     //get id and key here: https://developer.edamam.com/edamam-recipe-api
     const [resources, setResources] = useState([]);
     const [selectedValue, setSelectedValue] = useState("chicken");
