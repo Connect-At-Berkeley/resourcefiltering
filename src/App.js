@@ -1,11 +1,7 @@
-import logo from './logo.svg';
-//adapted from Dev Ed
 import React, {useEffect, useState} from 'react';
 import Select from 'react-select';
 import './App.css';
-import Dropdown from "./Dropdown";
-import Resource from "./Resource";
-//help
+import ResourceDisplay from "./ResourceDisplay";
 
 const choices = [
   { value: 'chicken', label: 'Chicken' },
@@ -15,61 +11,120 @@ const choices = [
   {value: 'salt', label: "Salt"},
   {value: 'cherry', label: "Cherry"}
 ]
+const type = [
+    { value: 'student success', label: 'Student Success' },
+    { value: 'basic needs', label: 'Basic Needs' },
+  ]
+  const issue = [
+    { value: 'academics', label: 'Academics' },
+    { value: 'professional', label: 'Professional Development' },
+    { value: 'sports', label: 'Sports' },
+    { value: 'arts', label: 'Arts' },
+    { value: 'research', label: 'Research' },
+    { value: 'otherecs', label: 'Other Extracurriculars' },
+  ]
+  const college = [
+    { value: 'coc', label: 'College of Chemistry' },
+    { value: 'coe', label: 'College of Engineering' },
+    { value: 'ced', label: 'College of Environmental Design' },
+    { value: 'lns', label: 'Letters and Science' },
+    { value: 'cns', label: 'College of Natural Resources' },
+    { value: 'haas', label: 'Haas School of Business' },
+  ]
 const App = () => {
-    const APP_ID = '53ce6f41';
-    const APP_KEY = '5ffbad31fe45083fbe0f866dd398d4db';
-    //get id and key here: https://developer.edamam.com/edamam-recipe-api
-    const [resources, setResources] = useState([]);
-    const [selectedValue, setSelectedValue] = useState("chicken");
+  const [selectedValue, setSelectedValue] = useState('chicken');
+  // const [finalSelections, setFinalSelections] = useState([]);
+  
+  const handleChange = (e) => {
+    setSelectedValue(e.value);
+    // setFinalSelections(finalSelections => [...finalSelections, selectedValue]);
+    // console.log("This is the final array: ", finalSelections);
+    console.log("This is the option we are adding: "+ selectedValue);
 
-    useEffect(() =>
-    {
-      getResources();
-
-
-    }, [selectedValue]);
-    const getResources = async () =>{
-      const response = await fetch(`https://api.edamam.com/search?q=${selectedValue}&app_id=${APP_ID}&app_key=${APP_KEY}`)
-      const data = await response.json();
-      setResources(data.hits);
-      console.log(data.hits);
-      
-    }
-    const handleChange = e => {
-      console.log("Selected it!")
-      setSelectedValue(e.value);
-    }
     
-
+  }
+  const colourStyles = {
+    control: styles => ({ ...styles, backgroundColor: 'white' }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      const color = chroma(data.color);
+      return {
+        ...styles,
+        backgroundColor: isDisabled ? 'red' : blue,
+        color: '#FFF',
+        cursor: isDisabled ? 'not-allowed' : 'default',
+        ...
+      };
+    },
+    ...
+  };
+  
     return (
-        <div className ="ResourceFinder">
-          
-          <div className="dropdown">
-          <Dropdown/>
-          <div className="">
-          <div className="">
-            <br></br>
-            <h5 style={{color: "#056BA5"}}> Choices </h5>
+      <div>
+        <div className ="dropdown">
+        
+        <div className="">
+          <h2 className="" style={{color: "#056BA5"}}> Your Filters </h2> 
+        </div>
+        <br></br>
+            <h3 style={{color: "#056BA5"}}> Choices </h3>
             <Select 
+            styles={colourStyles}
+            menuColor="red"
+            width="200px"
             options = {choices} 
-            isMulti = {false}
-            value={choices.find(obj => obj.value === selectedValue)}
+            isMulti
+            value = {choices.find(obj => obj.value === selectedValue)}
             onChange={handleChange}
             />
+        <br></br>
+        <div className="">
+          <div className="">
+            <h3 style={{color: "#056BA5"}}> Type </h3>
+            <Select options = {type} isMulti/>
           </div>
         </div>
+      <br></br>
+        <div className="">
+          <div className="">
+            <h3 style={{color: "#056BA5"}}> Issue Area</h3>
+            <Select options = {issue} isMulti/>
           </div>
-         
-          <h3 className="background"> Resource Finder</h3>
-          <div className="resourcedisplay">
-          {resources.map(recipe =>(
-            <Resource title={recipe.recipe.label} link={recipe.recipe.calories} image={recipe.recipe.image}/>
-          ))};
+        </div>
+        <br></br>
+
+        <div className="">
+          <div className="">
+            <h3 style={{color: "#056BA5"}}> College</h3>
+            <Select options = {college} isMulti/>
           </div>
-          
+        </div>
+        <br></br>
+
+        <div className="">
+          <div className="">
+            <h3 style={{color: "#056BA5"}}> Department</h3>
+            <Select options = {college} isMulti/>
+          </div>
+        </div>
+        <br></br>
+
+        <div className="">
+          <div className="">
+            <h3 style={{color: "#056BA5"}}>Industry</h3>
+            <Select options = {college} isMulti/>
+          </div>
+        </div>
+        <br></br>
+        <button style={{"margin-left": '5vw'}} className="button-style">Email My Results</button> 
+        <button className="button-style"> Rate Our Matching</button>
+        
+        
+        </div>
+        <ResourceDisplay finalSelections ={selectedValue}/>
         </div>
         
         );
-    }
+}
+export default App;
+// {finalSelections.map((a) => `${a}`).join('')}
 
-    export default App;
