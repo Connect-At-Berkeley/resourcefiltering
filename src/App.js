@@ -43,20 +43,20 @@ const App = () => {
 
     
   }
-  const colourStyles = {
-    control: styles => ({ ...styles, backgroundColor: 'white' }),
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-      const color = chroma(data.color);
-      return {
-        ...styles,
-        backgroundColor: isDisabled ? 'red' : blue,
-        color: '#FFF',
-        cursor: isDisabled ? 'not-allowed' : 'default',
-        ...
-      };
-    },
-    ...
-  };
+  // const colourStyles = {
+  //   control: styles => ({ ...styles, backgroundColor: 'white' }),
+  //   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+  //     const color = chroma(data.color);
+  //     return {
+  //       ...styles,
+  //       backgroundColor: isDisabled ? 'red' : blue,
+  //       color: '#FFF',
+  //       cursor: isDisabled ? 'not-allowed' : 'default',
+  //       ...
+  //     };
+  //   },
+  //   ...
+  // };
   
     return (
       <div>
@@ -68,7 +68,7 @@ const App = () => {
         <br></br>
             <h3 style={{color: "#056BA5"}}> Choices </h3>
             <Select 
-            styles={colourStyles}
+            // styles={colourStyles}
             menuColor="red"
             width="200px"
             options = {choices} 

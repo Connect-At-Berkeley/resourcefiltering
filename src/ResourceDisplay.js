@@ -20,8 +20,7 @@ const ResourceDisplay = ({finalSelections}) => {
     }, [finalSelections]);
    
     const getResources = async () =>{
-      // `https://api.edamam.com/search?q=${finalSelections}&app_id=${APP_ID}&app_key=${APP_KEY}`
-      const response = await fetch("")
+      const response = await fetch(`https://api.edamam.com/search?q=${finalSelections}&app_id=${APP_ID}&app_key=${APP_KEY}`)
       console.log("this is the api: " + `https://api.edamam.com/search?q=${finalSelections}&app_id=${APP_ID}&app_key=${APP_KEY}`)
       const data = await response.json();
       setResources(data.hits);
