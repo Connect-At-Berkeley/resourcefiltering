@@ -2,6 +2,9 @@ import React, {useEffect, useState} from 'react';
 import Select from 'react-select';
 import './App.css';
 import ResourceDisplay from "./ResourceDisplay";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const choices = [
   { value: 'chicken', label: 'Chicken' },
@@ -32,7 +35,7 @@ const type = [
     { value: 'haas', label: 'Haas School of Business' },
   ]
 const App = () => {
-  const [selectedValue, setSelectedValue] = useState('chicken');
+  const [selectedValue, setSelectedValue] = useState('');
   // const [finalSelections, setFinalSelections] = useState([]);
   
   const handleChange = (e) => {
@@ -59,14 +62,13 @@ const App = () => {
   // };
   
     return (
-      <div>
-        <div className ="dropdown">
-        
-        <div className="">
-          <h2 className="" style={{color: "#056BA5"}}> Your Filters </h2> 
-        </div>
-        <br></br>
-            <h3 style={{color: "#056BA5"}}> Choices </h3>
+      <Container fluid>
+        <Row>
+        <Col sm={4}>
+        <div className="dropdown">
+          <h2> Your Filters </h2> 
+          <div className="dropdownbox">
+            <h3> Choices </h3>
             <Select 
             // styles={colourStyles}
             menuColor="red"
@@ -76,52 +78,42 @@ const App = () => {
             value = {choices.find(obj => obj.value === selectedValue)}
             onChange={handleChange}
             />
-        <br></br>
-        <div className="">
-          <div className="">
-            <h3 style={{color: "#056BA5"}}> Type </h3>
+             </div>
+        <div className="dropdownbox">
+            <h3> Type </h3>
             <Select options = {type} isMulti/>
-          </div>
         </div>
-      <br></br>
-        <div className="">
-          <div className="">
-            <h3 style={{color: "#056BA5"}}> Issue Area</h3>
+        <div className="dropdownbox">
+            <h3> Issue Area</h3>
             <Select options = {issue} isMulti/>
-          </div>
         </div>
-        <br></br>
 
-        <div className="">
-          <div className="">
-            <h3 style={{color: "#056BA5"}}> College</h3>
+        <div className="dropdownbox">
+            <h3> College</h3>
             <Select options = {college} isMulti/>
-          </div>
         </div>
-        <br></br>
 
-        <div className="">
-          <div className="">
-            <h3 style={{color: "#056BA5"}}> Department</h3>
+        <div className="dropdownbox">
+            <h3> Department</h3>
             <Select options = {college} isMulti/>
-          </div>
         </div>
-        <br></br>
 
-        <div className="">
-          <div className="">
-            <h3 style={{color: "#056BA5"}}>Industry</h3>
+        <div className="dropdownbox">
+            <h3>Industry</h3>
             <Select options = {college} isMulti/>
-          </div>
         </div>
-        <br></br>
-        <button style={{"margin-left": '5vw'}} className="button-style">Email My Results</button> 
+        
+        </div>
+        <button className="button-style">Email My Results</button> 
         <button className="button-style"> Rate Our Matching</button>
         
-        
-        </div>
+        </Col>
+        <Col>
         <ResourceDisplay finalSelections ={selectedValue}/>
-        </div>
+        </Col>
+        
+        </Row>
+        </Container>
         
         );
 }

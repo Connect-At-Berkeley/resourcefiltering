@@ -3,6 +3,9 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import Resource from "./Resource";
 //help
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 const ResourceDisplay = ({finalSelections}) => {
@@ -30,15 +33,15 @@ const ResourceDisplay = ({finalSelections}) => {
   
 
     return (
-        <div className ="ResourceFinder">
-          <h1 className="background"> Resource Finder</h1>
+        <Col xs={8}className ="ResourceFinder">
+          <h1> Resource Finder</h1>
           <div className="resourcedisplay">
           {resources.map(recipe =>(
             <Resource title={recipe.recipe.label} link={recipe.recipe.calories} image={recipe.recipe.image}/>
           ))}
           </div>
           
-        </div>
+        </Col>
         
         );
     }

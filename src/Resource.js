@@ -6,7 +6,7 @@ const Resource = ({title, link, image}) => {
             <img className="img-style" src={image} alt=""/>
             <div className="description-style">
                 <h2> {title}</h2>
-                <p > Tags: <p className="tag-style"> {link}</p></p>
+                <div > Tags: <p className="tag-style"> {link}</p></div>
             </div>
             
         </div>

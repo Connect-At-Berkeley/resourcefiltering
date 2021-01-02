@@ -3,8 +3,8 @@
 
 .ResourceFinder{
   font-family: 'Quicksand', sans-serif;
-  background: #056BA5;
   color: white;
+  background-color: #056BA5;
 }
 .resourcedisplay{
   display: flex;
@@ -15,16 +15,23 @@
   padding-top: 20px;
   
 }
-
+.dropdownbox{
+  margin-bottom: 10px;
+  width: 30%;
+}
 .dropdown{
-  padding: 300px;
-  width: 300px;
-  float: left;
+  display: flex;
+  flex-direction: column;
+
+  border: 2px solid white;
+  /* float: left; */
   padding: 20px;
+  color: #056BA5;
   line-height: 20px;
-  background: white;
+  background-color: white;
   font-family: 'Quicksand', sans-serif;
   font-weight: bold;
+  /* position: fixed; */
 }
 /* inspired by sproul.club */
 
@@ -46,6 +53,14 @@
   border-color: white;
   border-style: solid;
   border-radius: 5px;
+}
+.spacing{
+  /* float: left;
+  width: 100%; */
+  padding-left: 20vw;
+  border: 2px solid #056BA5;
+
+
 }
 .description-style{
   font-weight:bold;
