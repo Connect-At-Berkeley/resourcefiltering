@@ -40,6 +40,7 @@ const type = [
 const App = () => {
   const [selectedValue, setSelectedValue] = useState('');
   const [modalShow, setModalShow] = React.useState(false);
+  const [secondModalShow, setSecondModalShow] = React.useState(false);
   // const [finalSelections, setFinalSelections] = useState([]);
   
   const handleChange = (e) => {
@@ -50,7 +51,7 @@ const App = () => {
 
     
   }
-  function MyVerticallyCenteredModal(props) {
+  function EmailEnter(props) {
     return (
       <Modal
         {...props}
@@ -60,19 +61,41 @@ const App = () => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            Email My Results!
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Centered Modal</h4>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
-          </p>
+          <label>
+            Email: 
+            <input type="text" name="email"></input>
+          </label>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
+          <button className="button-style" onClick={() => { setSecondModalShow(true);}}>Send Email</button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+  function SentEmail(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Thank you!
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <label>
+            Your email has been sent!
+          </label>
+        </Modal.Body>
+        <Modal.Footer>
+          <button className="button-style" onClick={() => {props.onHide; setModalShow(false); setSecondModalShow(false);}}>Close</button>
         </Modal.Footer>
       </Modal>
     );
@@ -141,9 +164,13 @@ const App = () => {
         </div>
 
   
-        <MyVerticallyCenteredModal
+        <EmailEnter
           show={modalShow}
           onHide={() => setModalShow(false)}
+        />
+        <SentEmail
+        show={secondModalShow}
+        onHide={()=> setSecondModalShow(false)}
         />
         </Col>
         <Col>
