@@ -33,7 +33,7 @@ const ResourceDisplay = ({finalSelections}) => {
   
 
     return (
-        <Col xs={8}className ="ResourceFinder">
+        <div className ="ResourceFinder">
           <h1> Resource Finder</h1>
           <div className="resourcedisplay">
           {resources.map(recipe =>(
@@ -41,7 +41,7 @@ const ResourceDisplay = ({finalSelections}) => {
           ))}
           </div>
           
-        </Col>
+        </div>
         
         );
     }
