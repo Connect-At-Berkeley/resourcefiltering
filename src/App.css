@@ -1,38 +1,225 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;584;700&display=swap');
+
+/* global var */
+:root {
+  --ff-primary: 'Quicksand', sans-serif;
+
+  --clr-light: #A9E0FF;
+  --clr-dark: #056BA5;
+  --clr-gray: #888888;
+
+  --bs: 0px 3px 5px #888888;
+}
+
+/* dropdown */
+
+.dropdown{
+  max-width: 300px;
+  float: left;
+  padding: 20px;
+  padding-bottom: 5vw;
+  line-height: 15px;
+  background: white;
+}
+
+/* rating popup */
+.modal {
+  font-size: 12px;
+  background-color: white;
+  width: 30vw;
+  height: 230px;
+  border-radius: 3%;
+}
+.modal > .header {
+  width: 100%;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+  padding-top: 10px;
+  margin-right: 3px;
+  font-family: var(--ff-primary);
+  font-weight: bold;
+  color: var(--clr-dark);
+}
+.modal > .content {
+  width: 100%;
+  padding: 3px 3px;
+
+}
+.modal > .actions {
+  width: 100%;
+  padding: 5px 2px;
+  margin: auto;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 1px;
+  line-height: 20px;
+  right: 2px;
+  top: -3.5px;
+  font-size: 1.5em;
+  font-weight: bold;
+  background: none;
+  border: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+[data-popup='tooltip'].popup-overlay {
+  background: transparent;
+}
+
+.rating-num {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-around;
+  margin-left: 45px;
+  margin-right: 45px;
+  position: relative;
+  top: -17px;
+  color: var(--clr-dark);
+  font-family: var(--ff-primary);
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.circles {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.circle {
+  cursor: pointer;
+  transition: color 200ms;
+  margin: 1em;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+/* buttons */
+
+.btn-style {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #A9E0FF;
+  box-shadow: 0px 3px 5px #888888;
+  border-radius: 12px;
+  border: none;
+  font-family: 'Quicksand', sans-serif;
+  color: #002336;
+  font-weight: bold;
+  margin-top: 3vw;
+  cursor: pointer;
+}
+
+
+.btn-style2 {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  color: #056BA5;
+  font-family: 'Quicksand', sans-serif;
+  box-shadow: 0px 3px 5px #888888;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.bot-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4vw;
+}
+
+.btn-style3 {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #A9E0FF;
+  box-shadow: 0px 3px 5px #888888;
+  border-radius: 12px;
+  border: none;
+  font-family: 'Quicksand', sans-serif;
+  color: #002336;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  top: -15px;
+}
+
+/* text */
+
+.title {
+  background-color: #056BA5;
+  font-family: 'Quicksand', sans-serif;
   color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 0;
+  padding-left: 5vw;
 }
 
-.App-link {
-  color: #61dafb;
+.sub-txt {
+  background-color: #056BA5;
+  font-family: 'Quicksand', sans-serif;
+  color: white;
+  padding-top: 75px;
+  margin: 0;
+  padding-right: 6vw;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* img */
+
+
+.right-card {
+  margin-right: 5vw;
+  border: 2px solid white;
+  border-radius: 4px;
+  min-width: 520px;
+  min-height: 390px;
+}
+
+
+/* section layout */
+
+.title__subtxt {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 3em;
+
+}
+
+.left-card {
+  margin-left: 60px;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  background-color: #002336;
+  color: white;
+  border: 2px solid white;
+  border-right: 1px;
+  border-radius: 4px;
+  min-width: 220px;
+  max-width: 300px;
 }
