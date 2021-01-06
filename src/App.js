@@ -38,18 +38,39 @@ const type = [
     { value: 'haas', label: 'Haas School of Business' },
   ]
 const App = () => {
-  const [selectedValue, setSelectedValue] = useState('');
+  // const [selectedValue, setSelectedValue] = useState('');
   const [modalShow, setModalShow] = React.useState(false);
   const [secondModalShow, setSecondModalShow] = React.useState(false);
-  // const [finalSelections, setFinalSelections] = useState([]);
+  const [finalSelections, setFinalSelections] = useState([""]);
   
-  const handleChange = (e) => {
-    setSelectedValue(e.value);
-    // setFinalSelections(finalSelections => [...finalSelections, selectedValue]);
-    // console.log("This is the final array: ", finalSelections);
-    console.log("This is the option we are adding: "+ selectedValue);
+  // const handleChange = (e) => {
+  //   setSelectedValue(e.value);
+  //   // setFinalSelections(finalSelections => [...finalSelections, selectedValue]);
+  //   // console.log("This is the final array: ", finalSelections);
+  //   console.log("This is the option we are adding: "+ e.value);
 
     
+  // }
+  const handleSelectedMultiple = (e) =>{
+    // let choicesArray = [...finalSelections, e];
+    // setFinalSelections(choicesArray)
+    // // console.log('values', choicesArray)
+    let dummy = [{value: '', label:''}].concat(e)
+    setFinalSelections(dummy)
+    
+  }
+  function concatFunc(total, addition){
+    console.log("this is the selections", finalSelections)
+    console.log("starting value", total)
+    if (total.value == ''){
+      return addition.value;
+    }
+    // if (total instanceof String){
+    //   return total + " + " + addition.value;
+    // }
+    else{
+      return total + " + " + addition.value;
+    }
   }
   function EmailEnter(props) {
     return (
@@ -84,7 +105,7 @@ const App = () => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton>
+        <Modal.Header >
           <Modal.Title id="contained-modal-title-vcenter">
             Thank you!
           </Modal.Title>
@@ -100,20 +121,7 @@ const App = () => {
       </Modal>
     );
   }
-  // const colourStyles = {
-  //   control: styles => ({ ...styles, backgroundColor: 'white' }),
-  //   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-  //     const color = chroma(data.color);
-  //     return {
-  //       ...styles,
-  //       backgroundColor: isDisabled ? 'red' : blue,
-  //       color: '#FFF',
-  //       cursor: isDisabled ? 'not-allowed' : 'default',
-  //       ...
-  //     };
-  //   },
-  //   ...
-  // };
+
   
     return (
       <Container fluid>
@@ -125,11 +133,9 @@ const App = () => {
           <div className="dropdownelem">
             <h4> Choices </h4>
             <Select 
-            // styles={colourStyles}
             options = {choices} 
             isMulti
-            value = {choices.find(obj => obj.value === selectedValue)}
-            onChange={handleChange}
+            onChange={handleSelectedMultiple}
             />
              </div>
         <div className="dropdownelem">
@@ -174,13 +180,14 @@ const App = () => {
         />
         </Col>
         <Col>
-        <ResourceDisplay finalSelections ={selectedValue}/>
+        <ResourceDisplay finalSelections ={finalSelections.reduce(concatFunc)}/>
         </Col>
         
         </Row>
         </Container>
         
         );
+        // <ResourceDisplay finalSelections ={selectedValue}/>
 }
 export default App;
 // {finalSelections.map((a) => `${a}`).join('')}
