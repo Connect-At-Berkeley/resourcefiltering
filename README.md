@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# Resource Filtering App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Installs
+
+Install React-Select, React-Bootstrap
 
 ## Available Scripts
 
