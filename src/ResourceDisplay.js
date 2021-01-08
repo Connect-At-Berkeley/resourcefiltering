@@ -6,11 +6,11 @@ import Resource from "./Resource";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
+import DefaultImg from './default_img.png';
 
 const ResourceDisplay = ({finalSelections}) => {
-    const APP_ID = '';
-    const APP_KEY = '';
+    const APP_ID = '53ce6f41';
+    const APP_KEY = '5ffbad31fe45083fbe0f866dd398d4db';
     //get id and key here: https://developer.edamam.com/edamam-recipe-api
     const [resources, setResources] = useState([]);
     
@@ -37,7 +37,8 @@ const ResourceDisplay = ({finalSelections}) => {
           <h1> Resource Finder</h1>
           <div className="resourcedisplay">
           {resources.map(recipe =>(
-            <Resource title={recipe.recipe.label} link={recipe.recipe.calories} image={recipe.recipe.image}/>
+            <Resource title={recipe.recipe.label} link={recipe.recipe.calories} image={DefaultImg}/>
+            // recipe.recipe.image
           ))}
           </div>
           

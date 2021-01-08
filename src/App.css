@@ -96,19 +96,21 @@ img {
   margin-bottom: 20px;
 
 }
+.spacing-now{
+  margin-bottom: 10px;
+}
 .tag-style{
-  padding-top:5px;
-  padding-bottom:5px;
-  padding-right: 10px;
-  padding-left: 10px;
-  background-color: #66B186;
-  box-shadow: 0px 3px 5px #888888;
-  border-radius: 10px;
+  padding: 5px;
+  background-color: #056BA5;
+  box-shadow: 0px 3px 5px rgb(58, 58, 58);
+  border-radius: 15px;
   font-family: 'Quicksand', sans-serif;
+  font-size: 1vw;
   border: none;
   color: white;
   font-weight: bold;
   margin: 5px;
+  display: inline-block;
 
 }
 
