@@ -9,8 +9,8 @@ import Col from 'react-bootstrap/Col';
 import DefaultImg from './default_img.png';
 
 const ResourceDisplay = ({finalSelections}) => {
-    const APP_ID = '53ce6f41';
-    const APP_KEY = '5ffbad31fe45083fbe0f866dd398d4db';
+    const APP_ID = '';
+    const APP_KEY = '';
     //get id and key here: https://developer.edamam.com/edamam-recipe-api
     const [resources, setResources] = useState([]);
     

@@ -38,40 +38,40 @@ const type = [
     { value: 'haas', label: 'Haas School of Business' },
   ]
 const App = () => {
-  // const [selectedValue, setSelectedValue] = useState('');
   const [modalShow, setModalShow] = React.useState(false);
   const [secondModalShow, setSecondModalShow] = React.useState(false);
   const [finalSelections, setFinalSelections] = useState([""]);
-  
-  // const handleChange = (e) => {
-  //   setSelectedValue(e.value);
-  //   // setFinalSelections(finalSelections => [...finalSelections, selectedValue]);
-  //   // console.log("This is the final array: ", finalSelections);
-  //   console.log("This is the option we are adding: "+ e.value);
+  const [multipleFilters, setMultipleFilters] = useState({});
 
-    
+  // const handleSelectedMultiple = (e, name) =>{
+  //   let dummy = [{value: '', label:''}].concat(e)
+  //   setFinalSelections(dummy)
   // }
-  const handleSelectedMultiple = (e) =>{
-    // let choicesArray = [...finalSelections, e];
-    // setFinalSelections(choicesArray)
-    // // console.log('values', choicesArray)
+  const handleSelectedMultiple = (e, name) =>{
     let dummy = [{value: '', label:''}].concat(e)
     setFinalSelections(dummy)
+    setMultipleFilters({...multipleFilters, name: finalSelections})
     
   }
-  function concatFunc(total, addition){
-    console.log("this is the selections", finalSelections)
-    console.log("starting value", total)
-    if (total.value == ''){
-      return addition.value;
-    }
-    // if (total instanceof String){
-    //   return total + " + " + addition.value;
-    // }
-    else{
-      return total + " + " + addition.value;
-    }
+  // const handleSeparateSelections = (name) =>{
+    
+    
+  // }
+  function concatDictionary(){
+    console.log("these are the arrays of arrays", multipleFilters)
   }
+
+  // function concatFunc(total, addition){
+  //   console.log("these are the arrays of arrays", multipleFilters)
+  //   // console.log("this is the selections", finalSelections)
+  //   // console.log("starting value", total)
+  //   // if (total.value == ''){
+  //   //   return addition.value;
+  //   // }
+  //   // else{
+  //   //   return total + " + " + addition.value;
+  //   // }
+  // }
   function EmailEnter(props) {
     return (
       <Modal
@@ -133,14 +133,18 @@ const App = () => {
           <div className="dropdownelem">
             <h4> Choices </h4>
             <Select 
-            options = {choices} 
+            options = {choices}
             isMulti
-            onChange={handleSelectedMultiple}
+            onChange={(e) => handleSelectedMultiple(e,"choices")}
             />
              </div>
         <div className="dropdownelem">
             <h4> Type </h4>
-            <Select options = {type} isMulti/>
+            <Select 
+            options = {type} 
+            isMulti
+            onChange={handleSelectedMultiple}
+            />
         </div>
         <div className="dropdownelem">
             <h4> Issue Area</h4>
@@ -180,15 +184,14 @@ const App = () => {
         />
         </Col>
         <Col>
-        <ResourceDisplay finalSelections ={finalSelections.reduce(concatFunc)}/>
+        <ResourceDisplay finalSelections ={concatDictionary()}/>
         </Col>
         
         </Row>
         </Container>
         
         );
-        // <ResourceDisplay finalSelections ={selectedValue}/>
 }
 export default App;
-// {finalSelections.map((a) => `${a}`).join('')}
+
 
