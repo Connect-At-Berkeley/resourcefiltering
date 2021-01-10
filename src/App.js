@@ -18,8 +18,8 @@ const choices = [
   {value: 'cherry', label: "Cherry"}
 ]
 const type = [
-    { value: 'student success', label: 'Student Success' },
-    { value: 'basic needs', label: 'Basic Needs' },
+    { value: 'student-success', label: 'Student Success' },
+    { value: 'basic-needs', label: 'Basic Needs' },
   ]
   const issue = [
     { value: 'academics', label: 'Academics' },
@@ -48,18 +48,36 @@ const App = () => {
   //   setFinalSelections(dummy)
   // }
   const handleSelectedMultiple = (e, name) =>{
-    let dummy = [{value: '', label:''}].concat(e)
-    setFinalSelections(dummy)
-    setMultipleFilters({...multipleFilters, name: finalSelections})
+    // let dummy = [{value: '', label:''}].concat(e)
+    console.log("e", e)
+    setFinalSelections(e)
+    setMultipleFilters({...multipleFilters, [name]: e})
     
   }
   // const handleSeparateSelections = (name) =>{
     
     
   // }
+  //{ choices: [chicken, banana], type: [student success, basic needs]}
+  // chicken+banana/student-success+basic-needs
   function concatDictionary(){
-    console.log("these are the arrays of arrays", multipleFilters)
-  }
+
+    let finalstring = ""
+    console.log("obj", multipleFilters);
+    for (const value of Object.values(multipleFilters)) {
+      for (const obj of value) {
+        console.log("obj: ", obj["value"])
+        finalstring = finalstring + obj["value"] + "+"
+        
+
+      }
+         finalstring = finalstring.replace(/.$/, "/");
+    }
+     console.log(finalstring);
+     return finalstring;
+    }
+   
+  
 
   // function concatFunc(total, addition){
   //   console.log("these are the arrays of arrays", multipleFilters)
@@ -143,7 +161,7 @@ const App = () => {
             <Select 
             options = {type} 
             isMulti
-            onChange={handleSelectedMultiple}
+            onChange={(e) => handleSelectedMultiple(e,"type")}
             />
         </div>
         <div className="dropdownelem">
