@@ -20,76 +20,128 @@ const choices = [
 const type = [
     { value: 'student-success', label: 'Student Success' },
     { value: 'basic-needs', label: 'Basic Needs' },
+    { value: 'diversity-equity-and-inclusion', label: 'Diversity, Equity, and Inclusion' },
+    { value: 'health', label: 'Health' },
+    { value: 'covid19', label: 'COVID-19' },
+    { value: 'financial aid', label: 'Financial Aid' },
   ]
   const issue = [
-    { value: 'academics', label: 'Academics' },
-    { value: 'professional', label: 'Professional Development' },
-    { value: 'sports', label: 'Sports' },
-    { value: 'arts', label: 'Arts' },
-    { value: 'research', label: 'Research' },
-    { value: 'otherecs', label: 'Other Extracurriculars' },
+    {
+      label: "Student Success",
+      options: [
+        { value: 'chemistry', label: 'Chemistry' },
+        { value: 'engineering', label: 'Engineering' },
+        { value: 'college-of-environmental-design', label: 'College of Environmental Design' },
+        { value: 'lns', label: 'Letters and Science' },
+        { value: 'cns', label: 'College of Natural Resources' },
+        { value: 'haas', label: 'Haas School of Business' }
+      ]
+    },
+    {
+      label: "Basic Needs",
+      options: [
+
+    { value: 'legal', label: 'Legal' },
+    { value: 'international', label: 'International' },
+    { value: 'tutoring', label: 'Tutoring' },
+    { value: 'tech-resources', label: 'Tech Resources' },
+    { value: 'accommodations', label: 'Accommodations' },
+    { value: 'athletics', label: 'Athletics' },
+    { value: 'parents-and-family', label: 'Parents and Family' },
+    { value: 'food', label: 'Food' },
+    { value: 'on-campus-housing', label: 'Housing - On Campus' },
+    { value: 'off-campus-housing', label: 'Housing - Off Campus' },
+    { value: 'transportation', label: 'Transportation' },
+
+
+      ]
+    },
+    {
+      label: "Health",
+      options: [
+        { value: 'mental', label: 'Mental' },
+        { value: 'physical', label: 'Physical'},
+      ]
+    },
+    {
+      label: "COVID-19",
+      options:[
+          
+
+    { value: 'academic-support', label: 'Academic Support' },
+    { value: 'finance', label: 'Finance'},
+    { value: 'health-mental-health', label: 'Health and Mental Health'},
+      ]
+    }
+
   ]
+
   const college = [
-    { value: 'coc', label: 'College of Chemistry' },
-    { value: 'coe', label: 'College of Engineering' },
-    { value: 'ced', label: 'College of Environmental Design' },
-    { value: 'lns', label: 'Letters and Science' },
-    { value: 'cns', label: 'College of Natural Resources' },
-    { value: 'haas', label: 'Haas School of Business' },
+    {
+      label: "All Colleges",
+      options: [
+        { value: 'career', label: 'Career' },
+    { value: 'scholarships', label: 'Scholarships' },
+    { value: 'involvement', label: 'Involvement' },
+    { value: 'course-advice', label: 'Course Advice' },
+    { value: 'research', label: 'Research' },
+
+      ]
+    },
+
+
   ]
 const App = () => {
   const [modalShow, setModalShow] = React.useState(false);
   const [secondModalShow, setSecondModalShow] = React.useState(false);
   const [finalSelections, setFinalSelections] = useState([""]);
   const [multipleFilters, setMultipleFilters] = useState({});
+  const [disableIssue, setDisableIssue] = useState(true);
+  const [disableFilter, setDisableFilter] = useState(true);
 
-  // const handleSelectedMultiple = (e, name) =>{
-  //   let dummy = [{value: '', label:''}].concat(e)
-  //   setFinalSelections(dummy)
-  // }
   const handleSelectedMultiple = (e, name) =>{
-    // let dummy = [{value: '', label:''}].concat(e)
     console.log("e", e)
     setFinalSelections(e)
     setMultipleFilters({...multipleFilters, [name]: e})
+    if (name=="type"){
+      setDisableIssue(false);
+    }
+    if(name=="issue"){
+      setDisableFilter(false);
+    }
     
   }
-  // const handleSeparateSelections = (name) =>{
-    
-    
-  // }
-  //{ choices: [chicken, banana], type: [student success, basic needs]}
-  // chicken+banana/student-success+basic-needs
+ 
+
   function concatDictionary(){
 
     let finalstring = ""
     console.log("obj", multipleFilters);
-    for (const value of Object.values(multipleFilters)) {
-      for (const obj of value) {
-        console.log("obj: ", obj["value"])
-        finalstring = finalstring + obj["value"] + "+"
-        
+    if (multipleFilters == null){
+      return ;
 
-      }
-         finalstring = finalstring.replace(/.$/, "/");
+    }else{
+      for (const value of Object.values(multipleFilters)) {
+        if (Array.isArray(value)){
+          for (const obj of value) {
+            console.log("obj: ", obj["value"])
+            finalstring = finalstring + obj["value"] + "+"
+            
+    
+          }
+             finalstring = finalstring.replace(/.$/, "/");
+        }
+
+        }
+       console.log(finalstring);
+       return finalstring;
+
     }
-     console.log(finalstring);
-     return finalstring;
+
     }
    
   
 
-  // function concatFunc(total, addition){
-  //   console.log("these are the arrays of arrays", multipleFilters)
-  //   // console.log("this is the selections", finalSelections)
-  //   // console.log("starting value", total)
-  //   // if (total.value == ''){
-  //   //   return addition.value;
-  //   // }
-  //   // else{
-  //   //   return total + " + " + addition.value;
-  //   // }
-  // }
   function EmailEnter(props) {
     return (
       <Modal
@@ -139,6 +191,16 @@ const App = () => {
       </Modal>
     );
   }
+  // const IssueArea = () =>(
+  //   <div className="dropdownelem">
+  //           <h4> Issue Area</h4>
+  //           <Select 
+  //           options = {issue} 
+  //           isMulti
+  //           onChange={(e) => handleSelectedMultiple(e,"issue")}
+  //           />
+  //       </div>
+  // )
 
   
     return (
@@ -148,44 +210,40 @@ const App = () => {
         <div className="sticky-top">
         <div className="dropdown">
           <h2> Your Filters </h2> 
-          <div className="dropdownelem">
-            <h4> Choices </h4>
-            <Select 
-            options = {choices}
-            isMulti
-            onChange={(e) => handleSelectedMultiple(e,"choices")}
-            />
-             </div>
         <div className="dropdownelem">
             <h4> Type </h4>
             <Select 
+            placeholder={<div>select the type...</div>}
             options = {type} 
             isMulti
             onChange={(e) => handleSelectedMultiple(e,"type")}
             />
         </div>
-        <div className="dropdownelem">
+        <br></br>
+        <div className="dropdownelem" style={disableIssue ? {pointerEvents: "none", opacity: "0.4"} : {}}>
             <h4> Issue Area</h4>
-            <Select options = {issue} isMulti/>
+            <Select 
+            placeholder={<div>select the issue area...</div>}
+            options = {issue} 
+            isMulti
+            onChange={(e) => handleSelectedMultiple(e,"issue")}
+            />
         </div>
+        <br></br>
+        <div className="dropdownelem" style={disableFilter ? {pointerEvents: "none", opacity: "0.4"} : {}}>
+            <h4> Student Success Specific Filter</h4>
+            <Select 
+            placeholder={<div>specify for student success...</div>}
+            options = {college} 
+            isMulti
+            onChange={(e) => handleSelectedMultiple(e,"further")}
+            />
+        </div>
+        <br></br>
 
         <div className="dropdownelem">
-            <h4> College</h4>
-            <Select options = {college} isMulti/>
-        </div>
-
-        <div className="dropdownelem">
-            <h4> Department</h4>
-            <Select options = {college} isMulti/>
-        </div>
-
-        <div className="dropdownelem">
-            <h4>Industry</h4>
-            <Select options = {college} isMulti/>
-        </div>
-        <div className="dropdownelem">
-        <button onClick={() => setModalShow(true)} className="button-style">Email My Results</button> 
-        <button className="button-style"> Rate Our Matching</button>
+        {/* <button onClick={() => setModalShow(true)} className="button-style">Email My Results</button>  */}
+        <a href=""> <button className="button-style"> Rate Our Matching</button> </a>
         </div>
         
         </div>
@@ -211,5 +269,7 @@ const App = () => {
         );
 }
 export default App;
+// ss --> college --> issue area
+// #bn --> issue area --> student needs, then theres a sub issue area
 
 
