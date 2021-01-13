@@ -259,7 +259,7 @@ const App = () => {
         onHide={()=> setSecondModalShow(false)}
         />
         </Col>
-        <Col>
+        <Col sm={8}>
         <ResourceDisplay finalSelections ={concatDictionary()}/>
         </Col>
         
